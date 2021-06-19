@@ -1,12 +1,44 @@
-const analizador = require('../Analizador');
+const layout = require('../Layout');
 let cad = 
-`%s1<tabla1>|^t10,^c2#perro,^di||^l#perro|^fcx1#fecha%
- %s2<tabla2>|^t10,^c2#perro,^di||^l#perro|^fcx1#fecha%
- %s3<tabla3>|^t10,^c2#perro,^di||^l#perro|^fcx1#fecha%`;
+`
+%s<tabla1>|^e ,^l50,^di,^$^c2#perro+^#gato+^<lomito>| |^e ,^<l50>,^di,^$^c45<@+>|<Hola>|$^#perro%
+%s<tabla2>|^e ,^l50,^di,^$^c2#perro+^#gato+^<lomito>||$^#perro%
+%s<tabla3>|^e ,^l50,^di,^$^c2#perro+^#gato+^<lomito>||$^#perro%
+`;
 
-let a = new  analizador(cad);
+
+let datos ={
+  tabla1:[
+    {
+      perro:"Pastor Belga",
+      gato: "Egipcio"
+    }
+  ],
+  tabla2:[
+    {
+      perro:"Pastor ALEMAN",
+      gato: "Persa"
+    },
+    {
+      perro:"Bulldog",
+      gato: "Bengala"
+    },
+    {
+      perro:"Chihuahua",
+      gato: "Siames"
+    }
+
+  ],
+  tabla3:[
+    {
+      perro:"Maltes",
+      gato: "Burmes"
+    }
+  ]
+}
+
 
 test('Regresando datos', () => {
-  a.generarAnalizador(cad)
-  console.log( a.tokenColumna);
+  let l = new  layout(cad);
+  l.generarLayout(datos);
 });

@@ -4,7 +4,9 @@
   "description": "Lenguaje-Layout",
   "repository": "http://svanesa.online:14500/svanesa/lenguaje-layout.git",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "fs": "0.0.1-security"
+  },
   "scripts": {
     "test": "jest"
   },
