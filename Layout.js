@@ -28,12 +28,14 @@ class Layout {
       cont++;
     }
 
+    console.log(cadenaLayout);
+
     fs.appendFile('log.txt',cadenaLayout, function (err) {
       if (err) {
         // append failed
       }
        else {
-        console.log("Se termino de generar el layout")
+        console.log("Se termino de generar el layout");
       }
     })
 

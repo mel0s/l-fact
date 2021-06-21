@@ -1,21 +1,41 @@
+//
 const Propiedades = require('./Propiedades');
 const Columna = require('./Columna');
-class LayoutToken {
-  programacion = ""
-  registros = [];
-  columnas = [];
-  tokenColumna = [];
-  tablas = [];
 
+/**
+ *  Genera el proceso de analisis del codigo layout.
+ */
+class LayoutToken {
+  // Codigo de configuracion
+  programacion = ""
+  // Partes del layout.
+  registros = [];
+  // Columnas encontradas en la configuracion del layout.
+  columnas = [];
+  // Partes de la columna.
+  tokenColumna = [];
+  // Nombre de las tablas, configuradas.
+  tablas = [];
+  // Obtiene las propiedades de configuiracion de una columna.
   propiedadesCol = new Propiedades();
+
+  // Datos de la columna.
   columna = new Columna(); 
 
+  /**
+   * Inicializa el proceso de analisis del codigo de configuracion.
+   * @param {String} cad - Codigo de configuracion.
+   */
   constructor(cad) {
     this.programacion = cad;
     this.obtenerArbolToken();
   }
 
 
+  /**
+   * Obtiene las seccion configuradas en el codigo fuente. 
+   * @returns {Object}- Secciones
+   */
   buscarSecciones() {
     this.registros = [...this.programacion.match(/[%s]{1}[^%]*[\%]{1}/mg)];
 
@@ -27,6 +47,9 @@ class LayoutToken {
     return this.registros;
   }
 
+  /**
+   * Obtiene las columnas configuradas.
+   */
   obtenerColumnas() {
     let registros = this.registros;
     for (let i in registros) {
@@ -35,6 +58,9 @@ class LayoutToken {
     }
   }
 
+  /**
+   * Obtiene la configuracion de las  columnas del layout configuradas.
+   */
   obtenerColumnasToken() {
     let columnas = this.columnas;
     for (let i = 0; i < columnas.length; i++) {
@@ -56,6 +82,9 @@ class LayoutToken {
     }
   }
 
+  /**
+   * Obtiene el nombre de la tabalas configuradas.
+   */
   obtenerNombreTabla() {
     let columnas = this.columnas;
 
@@ -80,41 +109,18 @@ class LayoutToken {
 
   }
 
-  texto(cad, fila) {
-    if (/^\^t[*^]/.test(cad)) {
-      let token = cad.substring(cad.indexOf("^t"));
-      let d = this.columna(token, fila);
 
-      if (d) {
-        return d;
-      }
-      else {
-        return cad;
-      }
-    }
-    return undefined;
-
-  }
-
-  columna() {
-    if (/^#/.test(cad)) {
-      let nombreColumna = cad.substring(cad.indexOf("#"));
-      let dato = fila[nombreColumna];
-      if (dato) {
-        return dato;
-      }
-      else {
-        return;
-      }
-    }
-    return;
-  }
-
-
+  /** 
+   * Busca la configuracion del codigo fuente.
+   */
   obtenerArbolToken() {
+    // Busca las secciones del layout
     this.buscarSecciones();
+    // Obtiene las columnas de cada uno de los registros.
     this.obtenerColumnas();
+    // Obtiene los nombres de las tablas configuradas
     this.obtenerNombreTabla();
+    // Obtiene la configuracion de cada una de las columnas
     this.obtenerColumnasToken();
   }
 

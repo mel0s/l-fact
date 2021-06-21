@@ -1,20 +1,15 @@
-class Propiedades {  
+/**
+ * Propiedades de una columna
+ */
+class Propiedades {
+  // Coleccion de propiedades de una columna.
   propiedades = {};
 
-  tamano(tokens) {
-    let t = tokens.find(e => /^\^l[\d]/.test(e));
-    if (t) {
-      return {
-        tamano: parseFloat(t.substring(2))
-      }
-    }
-    else {
-      return {
-        tamano: 0
-      };
-    }
-  }
-
+  /**
+   * 
+   * @param {Array} tokens - Lista de tokens de configuracion de una columna.
+   * @returns - Configuracion de llenado por si el tamaño de la columna es mas grande que el contenido
+   */
   espacio(tokens) {
     let t = tokens.find(e => /^\^e[^\^]/.test(e));
     if (t) {
@@ -29,6 +24,11 @@ class Propiedades {
     }
   }
 
+  /**
+   * Obtiene la orientacion de la columna/
+   * @param {Array} tokens - Lista de tokens de configuracion de una columna.
+   * @returns {Object} - Configuracion de orientacion.
+   */
   direccion(tokens) {
 
     let t = tokens.find(e => /^\^d[*^]/.test(e));
@@ -43,18 +43,39 @@ class Propiedades {
         direccion: 'd'
       };
     }
-    else{
+    else {
       return {
         direccion: 'i'
       }
     }
-  }  
+  }
 
-  
-  obtenerPropiedades(tokens){
-    tokens = tokens|| this.tokens;
-    return Object.assign( this.propiedades,  this.tamano(tokens), this.espacio(tokens), this.direccion(tokens)) ;
-    
+  /**
+   * Obtiene el tamaño de la columna
+   * @param {Array} tokens  - Coleccion de propiedades de la columnas configurada
+   * @returns Indica el tama;o de la columna
+   */
+  tamano(tokens) {
+    let t = tokens.find(e => /^\^l[\d]/.test(e));
+    if (t) {
+      return {
+        tamano: parseFloat(t.substring(2))
+      }
+    }
+    else {
+      return {
+        tamano: 0
+      };
+    }
+  }
+
+  /**
+   * Ejecuta el analasis de configuracion de las propiedades de una columna
+   * @param {Array} tokens - Tokens de la columna
+   * @returns {Obejct} - Propiedades de la columna.
+   */
+  obtenerPropiedades(tokens) {
+    return Object.assign(this.propiedades, this.tamano(tokens), this.espacio(tokens), this.direccion(tokens));
   }
 }
 
