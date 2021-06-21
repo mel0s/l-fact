@@ -1,17 +1,48 @@
 const LayoutToken = require('./LayoutToken');
-const  fs = require('fs');
 class Layout {
 
   layoutToken = null;
+  cadenaLayout = "";
 
+  /**
+   * Inicializa el analisis del codigo fuente.
+   * @param {String} cad - Codigo fuente de configuracion 
+   */
   constructor(cad) {
     this.programacion = cad;
     this.layoutToken = new LayoutToken(cad);
   }
 
 
+  crearCadena(fila, tokensCadena) {
+    let cad = "";
 
+    for (let i = 0; i < tokensCadena.length; i++) {
 
+      let item = tokensCadena[i];
+
+      if (item.nombre === "ciclo") {
+
+        let car = this.obtenerDato(fila, item.cadena);
+
+        for (let j = 0; j < item.valor; j++) {
+          cad += car;
+        }
+
+      }
+      else {
+        cad += this.obtenerDato(fila, item);
+      }
+    }
+
+    return cad;
+  }
+
+  /**
+   * Genera el texto del layout
+   * @param {Object} datos - Coleccion de tablas o colecciones que se son la base del layout a mostrar.
+   * @returns {String} - Cadena del layout generado
+   */
   generarLayout(datos) {
 
     let tablas = this.layoutToken.tablas;
@@ -27,22 +58,17 @@ class Layout {
       }
       cont++;
     }
-
-    console.log(cadenaLayout);
-
-    fs.appendFile('log.txt',cadenaLayout, function (err) {
-      if (err) {
-        // append failed
-      }
-       else {
-        console.log("Se termino de generar el layout");
-      }
-    })
-
+    // Layout generado
+    return this.cadenaLayout;
 
   }
 
-
+  /**
+   * Obtiene la cadena de la seccion.
+   * @param {Object} tabla - Datos del layout
+   * @param {Object} configuracion - Configuracion del la seccion actual
+   * @returns  {String} - Cadena que representa la seccion
+   */
   generarSeccion(tabla, configuracion) {
     let layoutGenerado = '';
 
@@ -62,6 +88,12 @@ class Layout {
 
   }
 
+  /**
+   * Obtiene el texto de la columna 
+   * @param {Object} fila - Datos base de la fila.
+   * @param {Object} tokens  - Configuracion de la fila. 
+   * @returns {String} - Cadena que representa la fila
+   */
   generarColumna(fila, tokens) {
     let max = tokens.tamano;
     let direccion = tokens.direccion;
@@ -69,13 +101,15 @@ class Layout {
     let cad = this.crearCadena(fila, tokens.cadena);
     let l = cad.length;
 
-
+    // La columna no tiene tama;o
     if (max == 0) {
       return cad;
     }
+    // La columna es mas grande que el limite
     else if (l > max) {
       return cad.substring(0, max);
     }
+    // La oclumna es mas peque;a que el tamaño establecido, entonces se establece orientacion,  y llenado de caracteres
     else {
       if (direccion == 'i') {
         for (let i = 0; i < (max - l); i++) {
@@ -94,31 +128,13 @@ class Layout {
     }
   }
 
-  crearCadena(fila, tokensCadena) {
-    let cad = "";
 
-    for (let i = 0; i < tokensCadena.length; i++) {
-
-      let item = tokensCadena[i];
-
-      if (item.nombre === "ciclo") {
-
-        let car= this.obtenerDato(fila, item.cadena);
-
-        for(let j = 0; j< item.valor; j++){
-           cad += car;
-        }
-
-      }
-      else {
-        cad += this.obtenerDato(fila, item);
-      }
-    }
-
-    return cad;
-  }
-
-
+  /**
+   * Obtiene el dato real de un token.
+   * @param {Object} fila - Datos base.
+   * @param {Object} item  - Configuracion del token.
+   * @returns {String} - Datos real de un token
+   */
   obtenerDato(fila, item) {
     let cad = '';
     if (item.nombre === "columna") {
