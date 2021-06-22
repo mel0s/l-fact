@@ -2,8 +2,11 @@
  * Propiedades de una columna
  */
 class Propiedades {
-  // Coleccion de propiedades de una columna.
-  propiedades = {};
+  
+  constructor(){
+    // Coleccion de propiedades de una columna.
+    this.propiedades = {};
+  }
 
   /**
    * 

@@ -91,19 +91,26 @@ class Columna {
    */
   nombreColumna(token) {
     let t = token.match(/^#[^#]+|^\^#[^#]+/);
-    t = t[0];
-
     if (t) {
-      let cadena = t.substring(1);
-      return {
-        valor: cadena,
-        nombre: "columna"
+      t = t[0];
 
-      };
+      if (t) {
+        let cadena = t.substring(1);
+        return {
+          valor: cadena,
+          nombre: "columna"
+        };
+      }
+      else {
+        return;
+      }
+
     }
-    else {
+    else{
       return;
+
     }
+
 
   }
 

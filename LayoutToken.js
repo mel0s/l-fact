@@ -6,28 +6,30 @@ const Columna = require('./Columna');
  *  Genera el proceso de analisis del codigo layout.
  */
 class LayoutToken {
-  // Codigo de configuracion
-  programacion = ""
-  // Partes del layout.
-  registros = [];
-  // Columnas encontradas en la configuracion del layout.
-  columnas = [];
-  // Partes de la columna.
-  tokenColumna = [];
-  // Nombre de las tablas, configuradas.
-  tablas = [];
-  // Obtiene las propiedades de configuiracion de una columna.
-  propiedadesCol = new Propiedades();
 
-  // Datos de la columna.
-  columna = new Columna(); 
 
   /**
    * Inicializa el proceso de analisis del codigo de configuracion.
    * @param {String} cad - Codigo de configuracion.
    */
   constructor(cad) {
+    // Codigo de configuracion
     this.programacion = cad;
+    // Partes del layout.
+    this.registros = [];
+    // Columnas encontradas en la configuracion del layout.
+    this.columnas = [];
+    // Partes de la columna.
+    this.tokenColumna = [];
+    // Nombre de las tablas, configuradas.
+    this.tablas = [];
+    // Obtiene las propiedades de configuiracion de una columna.
+    this.propiedadesCol = new Propiedades();
+
+    // Datos de la columna.
+    this.columna = new Columna();
+
+
     this.obtenerArbolToken();
   }
 
@@ -41,7 +43,7 @@ class LayoutToken {
 
 
     this.registros.forEach((e, i) => {
-      this.registros.splice(i,1, e.substring(1, e.length - 1));
+      this.registros.splice(i, 1, e.substring(1, e.length - 1));
     });
 
     return this.registros;

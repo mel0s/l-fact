@@ -1,12 +1,10 @@
-import Layout from "./Layout"
+import  Layout from "./Layout.js"
+export {
+  Layout
+};
 
-function generarLayout(cad){
-  new Layout(cad);
-}
 
-module.exports = {
-  generarLayout
-}
+ 
 
 
 

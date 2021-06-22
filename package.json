@@ -1,18 +1,16 @@
 {
   "name": "l-fact",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "description": "Lenguaje-Layout",
   "repository": {
     "type": "git",
-    "url":"https://github.com/mel0s/l-fact.git"
-  },  
+    "url": "https://github.com/mel0s/l-fact.git"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mel0s/l-fact/issues"
   },
-  "dependencies": {
-    "fs": "0.0.1-security"
-  },
+  "dependencies": {},
   "scripts": {
     "test": "jest",
     "build": "microbundle"

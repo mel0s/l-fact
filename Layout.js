@@ -1,9 +1,5 @@
 const LayoutToken = require('./LayoutToken');
-class Layout {
-
-  layoutToken = null;
-  cadenaLayout = "";
-
+class Layout {  
   /**
    * Inicializa el analisis del codigo fuente.
    * @param {String} cad - Codigo fuente de configuracion 
@@ -59,7 +55,7 @@ class Layout {
       cont++;
     }
     // Layout generado
-    return this.cadenaLayout;
+    return cadenaLayout;
 
   }
 
