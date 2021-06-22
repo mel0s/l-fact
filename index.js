@@ -1,4 +1,4 @@
-import  Layout from "./Layout.js"
+import  Layout from "./src/Layout"
 export {
   Layout
 };

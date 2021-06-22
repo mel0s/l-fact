@@ -43,7 +43,7 @@ class Columna {
 
   /**
    * Obtiene la configuracion de un token cadena.
-   * @param {Array} tokens 
+   * @param {Array} tokens - Tokens de la columna 
    * @returns {Object} - Configuracion recolectada de una token cadena
    */
   estructuraCadena(tokens) {
@@ -86,16 +86,15 @@ class Columna {
 
   /**
    * Determina si el token es una columna de una tabla.
-   * @param {*} token 
-   * @returns Datos de conmfiguracion del tokne columna
+   * @param {String} token - Token a analizar.
+   * @returns {Object} - Datos de configuracion del token columna
    */
   nombreColumna(token) {
     let t = token.match(/^#[^#]+|^\^#[^#]+/);
     if (t) {
       t = t[0];
-
       if (t) {
-        let cadena = t.substring(1);
+        let cadena = t.substring( t.indexOf("#") + 1);
         return {
           valor: cadena,
           nombre: "columna"
@@ -104,14 +103,10 @@ class Columna {
       else {
         return;
       }
-
     }
-    else{
+    else {
       return;
-
     }
-
-
   }
 
   /**
@@ -122,18 +117,23 @@ class Columna {
   cadenaLiteral(token) {
 
     let t = token.match(/[<]{1}[^<|^>]+[>]{1}/);
-    t = t[0];
+
     if (t) {
-      let cadena = t.substring(1, t.length - 1);
-      return {
-        valor: cadena,
-        nombre: "literal"
-      };
+      t = t[0];
+      if (t) {
+        let cadena = t.substring(1, t.length - 1);
+        return {
+          valor: cadena,
+          nombre: "literal"
+        };
+      } 
+      else {
+        return;
+      }
     }
     else {
       return;
     }
-
   }
 
   /**

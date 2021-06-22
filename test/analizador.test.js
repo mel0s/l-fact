@@ -1,4 +1,4 @@
-const layout = require('../Layout');
+const layout = require('../src/Layout');
 let cad = 
 `
 %s<tabla1>|^e ,^l50,^di,^$^c2#perro+^#gato+^<\t>| |^e ,^l50,^di,^$^c10<@+>+^<\t>|^$^<Hola>+^<\t>|^$^#perro+^<\t>%
@@ -40,5 +40,6 @@ let datos ={
 
 let l = new  layout(cad);
 test('Regresando datos', () => {  
-  l.generarLayout(datos);
+  let t = l.generarLayout(datos);
+  console.log(t);
 });

@@ -1,6 +1,6 @@
 {
   "name": "l-fact",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Lenguaje-Layout",
   "repository": {
     "type": "git",
@@ -10,17 +10,35 @@
   "bugs": {
     "url": "https://github.com/mel0s/l-fact/issues"
   },
-  "dependencies": {},
   "scripts": {
     "test": "jest",
-    "build": "microbundle"
+    "build": "microbundle",
+    "jsdoc": "jsdoc -c jsdoc.json"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
     "@babel/node": "^7.14.5",
     "@babel/preset-env": "^7.14.5",
     "babel-jest": "^27.0.2",
+    "eslint": "^7.29.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "husky": "^6.0.0",
     "jest": "^27.0.4",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.3.1",
     "regenerator-runtime": "^0.13.7"
+  },
+  "dependencies": {
+    "docdash": "^1.2.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test"
+    }
+  },
+  "lint-staged": {
+    "*.js": ["prettier --write", "eslint --fix", "git add"],
+    "*.{json,md}": ["prettier --write", "git add"]
   }
 }

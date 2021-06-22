@@ -1,15 +1,25 @@
 const LayoutToken = require('./LayoutToken');
-class Layout {  
+class Layout {
   /**
    * Inicializa el analisis del codigo fuente.
    * @param {String} cad - Codigo fuente de configuracion 
    */
   constructor(cad) {
-    this.programacion = cad;
-    this.layoutToken = new LayoutToken(cad);
+    try {
+      this.programacion = cad;
+      this.layoutToken = new LayoutToken(cad);
+    } 
+    catch (error) {
+      throw error;
+    }
   }
 
-
+  /**
+   * 
+   * @param {Array} fila - Datos base del registro del layout
+   * @param {Array} tokensCadena - Lista de tokens de la seccion
+   * @returns 
+   */
   crearCadena(fila, tokensCadena) {
     let cad = "";
 

@@ -27,7 +27,7 @@ class LayoutToken {
     this.propiedadesCol = new Propiedades();
 
     // Datos de la columna.
-    this.columna = new Columna();
+    this.columna = new Columna(cad);
 
 
     this.obtenerArbolToken();
@@ -94,10 +94,9 @@ class LayoutToken {
       let columna = columnas[i];
 
       if (columna[0]) {
-        let con = columna[0].match(/[<]{1}[^<>]*[>]{1}/gm);
-        con = con[0];
-
+        let con = columna[0].match(/[<]{1}[^<\^>]*[>]{1}/gm);
         if (con) {
+          con = con[0];
           this.tablas.push(con.substring(1, con.length - 1));
         }
         else {
