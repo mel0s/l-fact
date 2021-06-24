@@ -39,12 +39,27 @@ class LayoutToken {
    * @returns {Object}- Secciones
    */
   buscarSecciones() {
-    this.registros = [...this.programacion.match(/[%s]{1}[^%]*[\%]{1}/mg)];
+    this.registros = [...this.programacion.match(/[^\n]*\n*/mg)];
+
+
+    if(this.registros.length == 0 ){
+      throw new SyntaxError("No existen secciones configuradas; El salto de linea indica el final de la configuracion de una seccion  ");
+      return;
+    }    
+
 
 
     this.registros.forEach((e, i) => {
-      this.registros.splice(i, 1, e.substring(1, e.length - 1));
+      if (e) {
+        e = e.trim();
+        this.registros.splice(i, 1, e);
+      }
+      else{
+        this.registros.splice(i, 1);
+      }
     });
+
+    
 
     return this.registros;
   }
@@ -100,11 +115,11 @@ class LayoutToken {
           this.tablas.push(con.substring(1, con.length - 1));
         }
         else {
-          this.tablas.push('###404');
+          this.tablas.push('###404Columna');
         }
       }
       else {
-        this.tablas.push('###404');
+        this.tablas.push('###404Columna');
       }
     }
 

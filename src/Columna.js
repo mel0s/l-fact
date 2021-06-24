@@ -47,11 +47,11 @@ class Columna {
    * @returns {Object} - Configuracion recolectada de una token cadena
    */
   estructuraCadena(tokens) {
-    let t = tokens.find(e => /^\^\$+/.test(e));
+    let t = tokens.find(e => /^\^\$|\$+/.test(e));
     let arbolToken = { cadena: [] };
 
     if (t) {
-      let lemas = t.substring(2).split('+^');
+      let lemas = t.substring(t.indexOf("$") + 1 ).split('+^');
 
       for (let i = 0; i < lemas.length; i++) {
         let lema = lemas[i];

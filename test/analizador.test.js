@@ -1,45 +1,44 @@
 const layout = require('../src/Layout');
-let cad = 
-`
-%s<tabla1>|^e ,^l50,^di,^$^c2#perro+^#gato+^<\t>| |^e ,^l50,^di,^$^c10<@+>+^<\t>|^$^<Hola>+^<\t>|^$^#perro+^<\t>%
-%s<tabla2>|^e ,^l50,^di,^$^c2#perro+^#gato+^<lomito>||$^#perro%
-%s<tabla3>|^e ,^l50,^di,^$^c2#perro+^#gato+^<lomito>||$^#perro%
-`;
+let cad =
+  `tabla1>|^e ,^l50,^di,^$^c2#perro+^#gato|^$^c2<%> |^e ,^l50,^di,^$^c10<@+>+^<\t>|^$^<Hola>+^<\t>|^$^#perro+^<\t>
+  <tabla2>|^e ,^l50,^di,^$^c2#perro+^#gato+^<lomito>||$^#perro
+  <tabla3>|^e ,^l50,^di,^$^c2#perro+^#gato+^<lomito>||$^#perro`;
 
 
-let datos ={
-  tabla1:[
+let datos = {
+  tabla1: [
     {
-      perro:"Pastor Belga",
+      perro: "Pastor Belga",
       gato: "Egipcio"
     }
   ],
-  tabla2:[
+  tabla2: [
     {
-      perro:"Pastor ALEMAN",
+      perro: "Pastor ALEMAN",
       gato: "Persa"
     },
     {
-      perro:"Bulldog",
+      perro: "Bulldog",
       gato: "Bengala"
     },
     {
-      perro:"Chihuahua",
+      perro: "Chihuahua",
       gato: "Siames"
     }
 
   ],
-  tabla3:[
+  tabla3: [
     {
-      perro:"Maltes",
+      perro: "Maltes",
       gato: "Burmes"
     }
   ]
 }
 
 
-let l = new  layout(cad);
-test('Regresando datos', () => {  
-  let t = l.generarLayout(datos);
-  console.log(t);
+let l = new layout(cad);
+let t = l.generarLayout(datos);
+console.log(t);
+test('Regresando datos', () => {
+
 });

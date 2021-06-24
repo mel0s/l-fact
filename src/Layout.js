@@ -6,11 +6,21 @@ class Layout {
    */
   constructor(cad) {
     try {
-      this.programacion = cad;
-      this.layoutToken = new LayoutToken(cad);
+
+      if(cad){
+        cad = cad.trim();
+        this.programacion = cad;
+        this.layoutToken = new LayoutToken(cad);
+      }
+      else{
+        throw new SyntaxError("El codigo fuente no fue creado o asignado al constructor Layout");
+      }
+
+      
     } 
     catch (error) {
-      throw error;
+      throw new SyntaxError( error.message);
+      
     }
   }
 
@@ -61,6 +71,9 @@ class Layout {
       let t = datos[tabla];
       if (t) {
         cadenaLayout += this.generarSeccion(t, configuracion);
+      }
+      else{
+        cadenaLayout += "###404Tabla\n";
       }
       cont++;
     }
