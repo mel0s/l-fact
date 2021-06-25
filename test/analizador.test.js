@@ -8,7 +8,7 @@ let cad =
 let datos = {
   tabla1: [
     {
-      chichis: "Pastor Belga",
+      perro: "Pastor Belga",
       gato: "Egipcio"
     }
   ],

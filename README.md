@@ -12,6 +12,7 @@ De la comunidad para la comunidad
 ~~~
   npm install l-fact
 ~~~
+
 ### Ejemplo
 
 ```
@@ -73,7 +74,7 @@ console.log(t);
 ```
 
 ## Los siguientes son errores con seguimiento  
-===
+
 
 * ### ***###404Tabla***  La tabla no fue escrita con la sintasis correspondiente o no existe en los datos.
 * ***###404Columna***  La tabla no fue escrita con la sintasis correspondiente o no existe en los datos.
