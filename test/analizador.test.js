@@ -1,6 +1,6 @@
 const layout = require('../src/Layout');
 let cad =
-  `tabla1>|^e ,^l50,^di,^$^c2#perro+^#gato|^$^c2<%> |^e ,^l50,^di,^$^c10<@+>+^<\t>|^$^<Hola>+^<\t>|^$^#perro+^<\t>
+  `<tabla1>|^e ,^l50,^di,^$^c2#perro+^#gato|^$^c2<%> |^e ,^l50,^di,^$^c10<@+>+^<\t>|^$^<Hola>+^<\t>|^$^#perro+^<\t>
   <tabla2>|^e ,^l50,^di,^$^c2#perro+^#gato+^<lomito>||$^#perro
   <tabla3>|^e ,^l50,^di,^$^c2#perro+^#gato+^<lomito>||$^#perro`;
 
@@ -8,7 +8,7 @@ let cad =
 let datos = {
   tabla1: [
     {
-      perro: "Pastor Belga",
+      chichis: "Pastor Belga",
       gato: "Egipcio"
     }
   ],
