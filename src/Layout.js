@@ -8,6 +8,7 @@ class Layout {
     try {
 
       if(cad){
+        // Sin espacios
         cad = cad.trim();
         this.programacion = cad;
         this.layoutToken = new LayoutToken(cad);
