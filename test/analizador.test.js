@@ -38,7 +38,9 @@ let datos = {
 
 let l = new layout(cad);
 let t = l.generarLayout(datos);
-console.log(t);
-test('Regresando datos', () => {
 
+test('Esperando que no sea una cadena vacia', () => {
+
+  console.log(l.generarLayout(datos))
+  expect(l.generarLayout(datos)).not.toBe('');
 });
