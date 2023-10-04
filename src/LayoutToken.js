@@ -100,7 +100,7 @@ class LayoutToken {
   }
 
   /**
-   * Obtiene el nombre de la tabalas configuradas.
+   * Obtiene el nombre de la tablas configuradas.
    */
   obtenerNombreTabla() {
     let columnas = this.columnas;
